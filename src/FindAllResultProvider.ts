@@ -29,14 +29,14 @@ export default class FindAllResultProvider implements
 		this.links = []
 
 		const [ searchSymbol, currentlyOpenUri] = <[string, vscode.Uri]>JSON.parse(uri.query);
-		const filePath = currentlyOpenUri.path;
+		const filePath = currentlyOpenUri.fsPath;
 
 		var contents = fs.readFileSync(filePath, 'utf8');
 
 		let targetLineNum = 1;
 		let resultCount = 0;
 
-		const lines = contents.split(os.EOL);
+		const lines = contents.split('\n');
 		lines.forEach((line: string | string[]) => {
 
 			let fromIndex = 0;
